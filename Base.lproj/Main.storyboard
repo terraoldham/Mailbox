@@ -16,6 +16,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="342" height="1455"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" id="4As-gy-0Tp">
+                                        <rect key="frame" x="91" y="706" width="160" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <view contentMode="scaleToFill" id="Kth-LH-lLB">
                                         <rect key="frame" x="-10" y="-34" width="341" height="166"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -46,9 +51,29 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" id="VsP-E1-azd">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="c6G-io-In5" appends="YES" id="46m-MS-Wqz"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="later_icon" id="ckY-Vb-tNf">
+                                                <rect key="frame" x="275" y="30" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_icon" id="zJD-xq-3Nf">
+                                                <rect key="frame" x="275" y="30" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete_icon" id="M7p-GF-vkc">
+                                                <rect key="frame" x="21" y="30" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archive_icon" id="s6r-QL-6jg">
+                                                <rect key="frame" x="21" y="30" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </view>
                                 </subviews>
                             </scrollView>
@@ -58,17 +83,33 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1450"/>
                     <connections>
+                        <outlet property="archiveView" destination="s6r-QL-6jg" id="Znf-In-QT5"/>
+                        <outlet property="combinedView" destination="Gtl-mH-7b4" id="jfn-bi-NWj"/>
+                        <outlet property="deleteView" destination="M7p-GF-vkc" id="aVD-10-ESE"/>
+                        <outlet property="laterView" destination="ckY-Vb-tNf" id="UrQ-mc-FPa"/>
+                        <outlet property="listView" destination="zJD-xq-3Nf" id="Spj-Do-6ut"/>
+                        <outlet property="messageView" destination="VsP-E1-azd" id="Yke-mf-Fgu"/>
+                        <outlet property="panGestureRecognizer" destination="c6G-io-In5" id="uyl-Xe-zgv"/>
                         <outlet property="scrollView" destination="dDU-Da-OgN" id="u6g-v4-ifL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="c6G-io-In5">
+                    <connections>
+                        <action selector="onDrag:" destination="vXZ-lx-hvc" id="SkJ-St-GUa"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="162" y="335"/>
         </scene>
     </scenes>
     <resources>
+        <image name="archive_icon" width="25" height="25"/>
+        <image name="delete_icon" width="25" height="25"/>
         <image name="feed" width="320" height="1202"/>
         <image name="help_label" width="320" height="37"/>
+        <image name="later_icon" width="25" height="25"/>
+        <image name="list_icon" width="25" height="25"/>
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>
         <image name="search" width="320" height="42"/>
