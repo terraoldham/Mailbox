@@ -35,7 +35,7 @@ class MailboxViewController: UIViewController {
             messageView.center.x = messageCenter.x + translation.x
                 println("Gesture changed at: \(point)")
             
-                if messageView.center.x <= 125 && messageView.center.x > 60 {
+                if messageView.center.x <= 125 && messageView.center.x > (-30) {
                     UIView.animateWithDuration(0.3, animations: { () -> Void in
                         self.combinedView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.0, alpha: 1)
                         self.laterView.alpha = 1
@@ -45,18 +45,19 @@ class MailboxViewController: UIViewController {
                     
                     self.laterView.center.x = (self.messageView.center.x + 175)
                     
-                } else if messageView.center.x < 60 {
+                } else if messageView.center.x < (-30) {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
                         self.combinedView.backgroundColor = UIColor(red: 0.93, green: 0.41, blue: 1.0, alpha: 1)
                         self.listView.alpha = 1
                         self.laterView.alpha = 0
+                        self.archiveView.alpha = 0
                         //pink or brown
                     })
                     
                     self.listView.center.x = (self.messageView.center.x + 175)
                     
                 
-                } else if messageView.center.x > 195 && messageView.center.x < 260 {
+                } else if messageView.center.x > 195 && messageView.center.x < 350 {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
                         self.combinedView.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1)
                         self.archiveView.alpha = 1
@@ -66,7 +67,7 @@ class MailboxViewController: UIViewController {
                     
                     self.archiveView.center.x = (self.messageView.center.x - 175)
                 
-                } else if messageView.center.x > 260 {
+                } else if messageView.center.x > 350 {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
                         self.combinedView.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1)
                         self.archiveView.alpha = 0
@@ -88,6 +89,31 @@ class MailboxViewController: UIViewController {
             
             
         } else if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
+            
+            if messageView.center.x <= 125 && messageView.center.x > -30 {
+                UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
+                    self.messageView.center.x = 160
+                }, completion: nil)
+                
+                
+            } else if messageView.center.x > 195 && messageView.center.x < 350 {
+                UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
+                    self.messageView.center.x = 160
+                    }, completion: nil)
+                
+            } else if messageView.center.x > 350 {
+                UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
+                    self.messageView.center.x = 520
+                    self.deleteView.center.x = (self.messageView.center.x - 175)
+                }, completion: nil)
+                
+            } else if messageView.center.x < -30 {
+               UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
+                self.messageView.center.x = -200
+                self.listView.center.x = (self.messageView.center.x + 175)
+               }, completion: nil)
+                    
+            }
             
         }
     }
