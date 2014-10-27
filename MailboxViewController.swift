@@ -31,26 +31,60 @@ class MailboxViewController: UIViewController {
             messageCenter = messageView.center
             
         } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
-                self.messageView.center.x = point.x
             
+            messageView.center.x = messageCenter.x + translation.x
                 println("Gesture changed at: \(point)")
-                if messageCenter.x <= 160 && messageCenter.x > 50 {
-                    combinedView.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1)
+            
+                if messageView.center.x <= 125 && messageView.center.x > 60 {
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.combinedView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.0, alpha: 1)
+                        self.laterView.alpha = 1
+                        self.listView.alpha = 0
+                        //yellow
+                    })
                     
-                } else if messageCenter.x < 50 {
-                    combinedView.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1)
+                    self.laterView.center.x = (self.messageView.center.x + 175)
                     
-                //swiping far left
-                } else if messageCenter.x > 160 && messageCenter.x < 280 {
-                    combinedView.backgroundColor = UIColor(red: 0.6, green: 0.4, blue: 0.2, alpha: 1)
+                } else if messageView.center.x < 60 {
+                    UIView.animateWithDuration(0.25, animations: { () -> Void in
+                        self.combinedView.backgroundColor = UIColor(red: 0.93, green: 0.41, blue: 1.0, alpha: 1)
+                        self.listView.alpha = 1
+                        self.laterView.alpha = 0
+                        //pink or brown
+                    })
+                    
+                    self.listView.center.x = (self.messageView.center.x + 175)
+                    
                 
-                //swiping right
-                } else if messageCenter.x > 280 {
+                } else if messageView.center.x > 195 && messageView.center.x < 260 {
+                    UIView.animateWithDuration(0.25, animations: { () -> Void in
+                        self.combinedView.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1)
+                        self.archiveView.alpha = 1
+                        self.deleteView.alpha = 0
+                        //green
+                    })
                     
-                    
-                    combinedView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.0, alpha: 1)
+                    self.archiveView.center.x = (self.messageView.center.x - 175)
                 
-                }
+                } else if messageView.center.x > 260 {
+                    UIView.animateWithDuration(0.25, animations: { () -> Void in
+                        self.combinedView.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1)
+                        self.archiveView.alpha = 0
+                        self.deleteView.alpha = 1
+                        //red
+                    })
+                    
+                    self.deleteView.center.x = (self.messageView.center.x - 175)
+                    
+                
+                } else {
+                    combinedView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+                    if messageView.center.x > 125 && messageView.center.x < 160 {
+                        laterView.alpha = 1
+                    } else {
+                        archiveView.alpha = 1
+                    }
+            }
             
             
         } else if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
