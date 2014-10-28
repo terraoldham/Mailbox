@@ -31,6 +31,14 @@ class MailboxViewController: UIViewController, UIGestureRecognizerDelegate {
         println("tap")
         scrollView.contentSize = rescheduleView.image!.size
         self.rescheduleView.alpha = 0
+        self.laterView.alpha = 0
+        self.archiveView.alpha = 0
+        UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
+            self.combinedView.alpha = 0
+            }, completion: nil)
+        UIView.animateWithDuration(0.25, delay: 0.7, options: nil, animations: { () -> Void in
+            self.feedView.center.y += -80
+            }, completion: nil)
     }
     
     @IBAction func onDrag(sender: UIPanGestureRecognizer){
@@ -112,13 +120,17 @@ class MailboxViewController: UIViewController, UIGestureRecognizerDelegate {
                         self.scrollView.contentSize = self.rescheduleView.image!.size
                     }, completion: nil)
                 } else if velocity.x > 0 {
-                    self.messageView.center.x = 160
+                    UIView.animateWithDuration(0.4, delay: 0.0, options: nil, animations: { () -> Void in
+                        self.messageView.center.x = 160
+                        self.laterView.center.x = self.messageView.center.x + 175
+                    }, completion: nil)
+                    
                 }
-                
                 
             } else if messageView.center.x > 195 && messageView.center.x < 350 {
                 UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
                     self.messageView.center.x = 160
+                    self.archiveView.center.x = self.messageView.center.x - 175
                     }, completion: nil)
                 
                 
