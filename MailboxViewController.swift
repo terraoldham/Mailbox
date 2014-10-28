@@ -29,7 +29,7 @@ class MailboxViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func onTapping(sender: UITapGestureRecognizer) {
         println("tap")
-        scrollView.contentSize = rescheduleView.image!.size
+        scrollView.contentSize = CGSize(width: 320, height: 2325 - 80)
         self.rescheduleView.alpha = 0
         self.laterView.alpha = 0
         self.archiveView.alpha = 0
