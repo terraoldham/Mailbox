@@ -5,6 +5,7 @@ iOS Application - Mailbox
 
 Mailbox 
 Terra Oldham
+Hours Spent: 15
 
 This project is an iOS app that simulates an inbox. This project allows users to "Archive" and "Delete" a message, use the segmented control to perform these actions, and see beautiful colors.
 
