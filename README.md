@@ -20,8 +20,11 @@ This project is an iOS app that simulates an inbox. This project allows users to
 - [x] Optional: Tapping the segmented control in the title should swipe views in from the left or right.
 
 ![application image](Mailbox 1.gif)
+
 ![application image](Mailbox 2.gif)
+
 ![application image](Mailbox 3.gif)
+
 ![application image](Mailbox 4.gif)
 
 
