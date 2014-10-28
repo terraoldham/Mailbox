@@ -20,12 +20,57 @@ class MailboxViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     @IBOutlet weak var combinedView: UIView!
     @IBOutlet weak var feedView: UIImageView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     var messageCenter: CGPoint!
     
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer!, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
         return true
     }
+    
+    @IBAction func onEditingChanged(sender: AnyObject) {
+        var navChoices = [0, 1, 2]
+        var navChoice = navChoices[segmentedControl.selectedSegmentIndex]
+        if navChoice == 2 {
+            println("ajksdglajsdg")
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.combinedView.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1)
+                self.messageView.center.x = 520
+                self.archiveView.center.x = (self.messageView.center.x - 175)
+                self.archiveView.alpha = 1
+                self.deleteView.alpha = 0
+            UIView.animateWithDuration(0.5, delay: 0.2, options: nil, animations: { () -> Void in
+                self.combinedView.alpha = 0
+                }, completion: nil)
+            UIView.animateWithDuration(0.5, delay: 0.5, options: nil, animations: { () -> Void in
+                self.feedView.center.y += -80
+                }, completion: nil)
+                
+            })
+        }  else if navChoice == 0 {
+            println("ajksdglajsdg")
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.combinedView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.0, alpha: 1)
+                self.messageView.center.x = -200
+                self.laterView.center.x = (self.messageView.center.x + 175)
+                self.laterView.alpha = 1
+                self.listView.alpha = 0
+                UIView.animateWithDuration(0.5, delay: 0.2, options: nil, animations: { () -> Void in
+                    self.combinedView.alpha = 0
+                    }, completion: nil)
+                UIView.animateWithDuration(0.5, delay: 0.5, options: nil, animations: { () -> Void in
+                    self.feedView.center.y += -80
+                    }, completion: nil)
+                
+            })
+        }
+
+    }
+   
+    
+    
+    
     
     @IBAction func onTapping(sender: UITapGestureRecognizer) {
         println("tap")
