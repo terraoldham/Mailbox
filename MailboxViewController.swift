@@ -21,7 +21,8 @@ class MailboxViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var combinedView: UIView!
     @IBOutlet weak var feedView: UIImageView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
+    @IBOutlet var onListTap: UITapGestureRecognizer!
+    @IBOutlet weak var fullListView: UIImageView!
     var messageCenter: CGPoint!
     
     
@@ -85,6 +86,25 @@ class MailboxViewController: UIViewController, UIGestureRecognizerDelegate {
             self.feedView.center.y += -80
             }, completion: nil)
     }
+    
+    
+    //@IBAction func onListTapping(sender: UITapGestureRecognizer) {
+        //println("tap")
+        //scrollView.contentSize = CGSize(width: 320, height: 2325 - 80)
+        //self.fullListView.alpha = 0
+        //self.laterView.alpha = 0
+        //self.archiveView.alpha = 0
+        //UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
+            //self.combinedView.alpha = 0
+            //}, completion: nil)
+        //UIView.animateWithDuration(0.25, delay: 0.7, options: nil, animations: { () -> Void in
+            //self.feedView.center.y += -80
+            //}, completion: nil)
+   // }
+    
+    
+    
+    
     
     @IBAction func onDrag(sender: UIPanGestureRecognizer){
         
@@ -197,11 +217,14 @@ class MailboxViewController: UIViewController, UIGestureRecognizerDelegate {
                     self.messageView.center.x = -200
                     self.listView.center.x = (self.messageView.center.x + 175)
                }, completion: nil)
+                self.fullListView.alpha = 1
+                
                 UIView.animateWithDuration(0.2, delay: 0.5, options: nil, animations: { () -> Void in
                     self.combinedView.alpha = 0
                 }, completion: nil)
+                
                 UIView.animateWithDuration(0.5, delay: 0.8, options: nil, animations: { () -> Void in
-                    self.feedView.center.y += -80
+                    //self.feedView.center.y += -80
                 }, completion: nil)
                 
             }

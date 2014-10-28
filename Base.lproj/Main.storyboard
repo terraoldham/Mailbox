@@ -98,6 +98,14 @@
                                     <outletCollection property="gestureRecognizers" destination="yGm-DD-KGi" appends="YES" id="xhH-7I-HPg"/>
                                 </connections>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list" id="I37-Rg-Jkf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="GTu-U5-xbg" appends="YES" id="GzI-k1-3eD"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -108,9 +116,11 @@
                         <outlet property="combinedView" destination="Gtl-mH-7b4" id="jfn-bi-NWj"/>
                         <outlet property="deleteView" destination="M7p-GF-vkc" id="aVD-10-ESE"/>
                         <outlet property="feedView" destination="bgN-Su-SlG" id="bTj-Ox-npO"/>
+                        <outlet property="fullListView" destination="I37-Rg-Jkf" id="g1H-GU-jgx"/>
                         <outlet property="laterView" destination="ckY-Vb-tNf" id="UrQ-mc-FPa"/>
                         <outlet property="listView" destination="zJD-xq-3Nf" id="Spj-Do-6ut"/>
                         <outlet property="messageView" destination="VsP-E1-azd" id="Yke-mf-Fgu"/>
+                        <outlet property="onListTap" destination="GTu-U5-xbg" id="uol-Fj-JZw"/>
                         <outlet property="onTap" destination="yGm-DD-KGi" id="fGX-sL-EVv"/>
                         <outlet property="panGestureRecognizer" destination="c6G-io-In5" id="uyl-Xe-zgv"/>
                         <outlet property="rescheduleView" destination="uG5-KP-Mdp" id="kmt-lk-4ru"/>
@@ -129,6 +139,11 @@
                         <action selector="onTapping:" destination="vXZ-lx-hvc" id="W0v-dx-sz2"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="GTu-U5-xbg">
+                    <connections>
+                        <action selector="onListTapping:" destination="vXZ-lx-hvc" id="Kfd-kG-fXY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="162" y="335"/>
         </scene>
@@ -140,6 +155,7 @@
         <image name="help_label" width="320" height="37"/>
         <image name="later_icon" width="25" height="25"/>
         <image name="later_nav_icon" width="25" height="20"/>
+        <image name="list" width="320" height="568"/>
         <image name="list_icon" width="25" height="25"/>
         <image name="mail_nav_icon" width="25" height="20"/>
         <image name="message" width="320" height="86"/>
