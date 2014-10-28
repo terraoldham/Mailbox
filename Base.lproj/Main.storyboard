@@ -75,6 +75,14 @@
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </view>
+                                    <imageView alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reschedule" id="uG5-KP-Mdp">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="yGm-DD-KGi" appends="YES" id="xhH-7I-HPg"/>
+                                        </connections>
+                                    </imageView>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -86,10 +94,13 @@
                         <outlet property="archiveView" destination="s6r-QL-6jg" id="Znf-In-QT5"/>
                         <outlet property="combinedView" destination="Gtl-mH-7b4" id="jfn-bi-NWj"/>
                         <outlet property="deleteView" destination="M7p-GF-vkc" id="aVD-10-ESE"/>
+                        <outlet property="feedView" destination="bgN-Su-SlG" id="bTj-Ox-npO"/>
                         <outlet property="laterView" destination="ckY-Vb-tNf" id="UrQ-mc-FPa"/>
                         <outlet property="listView" destination="zJD-xq-3Nf" id="Spj-Do-6ut"/>
                         <outlet property="messageView" destination="VsP-E1-azd" id="Yke-mf-Fgu"/>
+                        <outlet property="onTap" destination="yGm-DD-KGi" id="fGX-sL-EVv"/>
                         <outlet property="panGestureRecognizer" destination="c6G-io-In5" id="uyl-Xe-zgv"/>
+                        <outlet property="rescheduleView" destination="uG5-KP-Mdp" id="kmt-lk-4ru"/>
                         <outlet property="scrollView" destination="dDU-Da-OgN" id="u6g-v4-ifL"/>
                     </connections>
                 </viewController>
@@ -99,6 +110,11 @@
                         <action selector="onDrag:" destination="vXZ-lx-hvc" id="SkJ-St-GUa"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="yGm-DD-KGi">
+                    <connections>
+                        <action selector="onTapping:" destination="vXZ-lx-hvc" id="W0v-dx-sz2"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="162" y="335"/>
         </scene>
@@ -112,6 +128,7 @@
         <image name="list_icon" width="25" height="25"/>
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>
+        <image name="reschedule" width="320" height="568"/>
         <image name="search" width="320" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

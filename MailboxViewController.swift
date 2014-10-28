@@ -8,7 +8,9 @@
 
 import UIKit
 
-class MailboxViewController: UIViewController {
+class MailboxViewController: UIViewController, UIGestureRecognizerDelegate {
+    @IBOutlet var onTap: UITapGestureRecognizer!
+    @IBOutlet weak var rescheduleView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var messageView: UIImageView!
     @IBOutlet weak var laterView: UIImageView!
@@ -17,8 +19,19 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var archiveView: UIImageView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     @IBOutlet weak var combinedView: UIView!
+    @IBOutlet weak var feedView: UIImageView!
     var messageCenter: CGPoint!
     
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer!, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
+        return true
+    }
+    
+    @IBAction func onTapping(sender: UITapGestureRecognizer) {
+        println("tap")
+        scrollView.contentSize = rescheduleView.image!.size
+        self.rescheduleView.alpha = 0
+    }
     
     @IBAction func onDrag(sender: UIPanGestureRecognizer){
         
@@ -91,9 +104,16 @@ class MailboxViewController: UIViewController {
         } else if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
             
             if messageView.center.x <= 125 && messageView.center.x > -30 {
-                UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
+                
+                if velocity.x < 0 {
+                    UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
+                        self.messageView.center.x = -200
+                        self.rescheduleView.alpha = 1
+                        self.scrollView.contentSize = self.rescheduleView.image!.size
+                    }, completion: nil)
+                } else if velocity.x > 0 {
                     self.messageView.center.x = 160
-                }, completion: nil)
+                }
                 
                 
             } else if messageView.center.x > 195 && messageView.center.x < 350 {
@@ -101,18 +121,32 @@ class MailboxViewController: UIViewController {
                     self.messageView.center.x = 160
                     }, completion: nil)
                 
+                
             } else if messageView.center.x > 350 {
                 UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
                     self.messageView.center.x = 520
                     self.deleteView.center.x = (self.messageView.center.x - 175)
                 }, completion: nil)
+                UIView.animateWithDuration(0.2, delay: 0.5, options: nil, animations: { () -> Void in
+                    self.combinedView.alpha = 0
+                    }, completion: nil)
+                UIView.animateWithDuration(0.5, delay: 0.8, options: nil, animations: { () -> Void in
+                    self.feedView.center.y += -80
+                    }, completion: nil)
+
                 
             } else if messageView.center.x < -30 {
                UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: { () -> Void in
-                self.messageView.center.x = -200
-                self.listView.center.x = (self.messageView.center.x + 175)
+                    self.messageView.center.x = -200
+                    self.listView.center.x = (self.messageView.center.x + 175)
                }, completion: nil)
-                    
+                UIView.animateWithDuration(0.2, delay: 0.5, options: nil, animations: { () -> Void in
+                    self.combinedView.alpha = 0
+                }, completion: nil)
+                UIView.animateWithDuration(0.5, delay: 0.8, options: nil, animations: { () -> Void in
+                    self.feedView.center.y += -80
+                }, completion: nil)
+                
             }
             
         }
@@ -123,6 +157,8 @@ class MailboxViewController: UIViewController {
         super.viewDidLoad()
         scrollView.contentSize = CGSize(width: 320, height: 2325)
         combinedView.addGestureRecognizer(panGestureRecognizer)
+        rescheduleView.addGestureRecognizer(onTap)
+        onTap.delegate = self
 
     }
 
